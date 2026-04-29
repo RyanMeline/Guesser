@@ -103,3 +103,17 @@ TEST(GuesserTest, empty_secret_match) {
 	ASSERT_FALSE(object.match("STILL NOT"));
 	ASSERT_TRUE(object.match(""));
 }
+
+TEST(GuesserTest, count_reset) { //This should return true because it should reset the guess  count on correct guess
+	Guesser object("Secret");
+	ASSERT_TRUE(object.match("Secret"));
+	ASSERT_FALSE(object.match("Secre"));
+	ASSERT_FALSE(object.match("Secre"));
+	ASSERT_TRUE(object.match("Secret"));
+	ASSERT_FALSE(object.match("Secre"));
+	ASSERT_FALSE(object.match("Secre"));
+	ASSERT_TRUE(object.match("Secret"));
+	ASSERT_FALSE(object.match("Secre"));
+	ASSERT_FALSE(object.match("Secre"));
+	ASSERT_TRUE(object.match("Secret"));
+}
